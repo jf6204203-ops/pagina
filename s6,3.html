@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CETPRO San Martín de Porres – Formación Técnica</title>
+  <meta name="description" content="Formación técnica con valores: confección, cosmetología, panadería, computación y más. Matrícula abierta." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="1.css">
+
+  <style>
+    :root{
+      --brand:#063766;        
+      --brand-2:#0b59a6;      
+      --accent:#ffd166;       
+      --ink:#0f172a;         
+      --muted:#64748b;        
+      --bg:#f6f7fb;
+      --card:#ffffff;
+      --radius:14px;
+      --shadow:0 10px 25px rgba(2,8,23,.08);
+      --focus: 0 0 0 3px rgba(11,89,166,.3);
+    }
+
+    /* RESET + accesibilidad básica */
+    *,*::before,*::after{
+      box-sizing:border-box}
+    html:focus-within{
+      scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      background:var(--bg);color:var(--ink);line-height:1.6}
+    img{
+      max-width:100%;
+      display:block}
+    a{
+      color:inherit;
+      text-decoration:none}
+    ul{list-style:
+      none;margin:0
+      ;padding:0} 
+    :focus-visible{outline:none;
+      box-shadow:var(--focus);
+      border-radius:8px}
+    @media (prefers-reduced-motion: reduce){
+      *{animation-duration:.01ms !important;
+        animation-iteration-count:1 !important;
+        transition-duration:.01ms !important;
+        scroll-behavior:auto !important}
+    }
+
+    /* Header & Nav */
+    .skip{
+      position:absolute;
+      inset:8px auto auto 8px;
+      background:#fff;
+      padding:.5rem .75rem;
+      border-radius:.5rem;
+      transform:translateY(-150%);}
+    .skip:focus{
+      transform:none}
+    header{
+      background:var(--brand);
+      color:#fff;position:sticky;
+      top:0;z-index:50;
+      box-shadow:0 6px 18px rgba(0,0,0,.12)}
+    .nav-wrap{
+      max-width:1200px;
+      margin:auto;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:.75rem 1rem;gap:1rem}
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:.75rem}
+    .brand img{
+      height:72px;
+      width:auto;
+      object-fit:contain}      /* logo en desktop */
+    .brand-name{
+      font-family:Montserrat,Inter,sans-serif;
+      font-weight:800;
+      letter-spacing:.2px}
+    .brand-name small{
+      display:block;
+      font-weight:600;
+      opacity:.85;
+      font-size:.75rem}
+
+    nav{
+      display:flex;
+      align-items:center;
+      gap:1rem}
+    .menu{
+      display:flex;
+      gap:.5rem}
+    .menu a
+    {padding:.75rem .9rem;
+      border-radius:10px;
+      position:relative}
+    .menu a::after{
+      content:"";
+      position:absolute;
+      left:12px;right:12px;
+      bottom:8px;height:2px;
+      background:rgba(255,255,255,.35);
+      transform:scaleX(0);
+      transform-origin:left;
+      transition:transform .25s ease;
+    }
+    .menu a:hover::after{
+      transform:scaleX(1)}
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:.5rem;
+      padding:.7rem 1rem;
+      border-radius:999px;
+      font-weight:600;
+      transition:transform .18s ease, 
+      box-shadow .18s ease;
+      border:1px solid transparent;
+    }
+    .btn.primary{
+      background:var(--accent);
+      color:#1f2937}
+    .btn.primary:hover{
+      transform:translateY(-1px);
+      box-shadow:0 6px 18px rgba(0,0,0,.15)}
+    .btn.ghost{
+      border-color:rgba(255,255,255,.25)}
+    .hamb{
+      display:none;
+      inline-size:46px;
+      block-size:46px;
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,.3);
+      background:transparent;color:#fff}
+    .hamb:focus-visible{
+      box-shadow:0 0 0 3px rgba(255,255,255,.35)}
+
+    /* Hero */
+    .hero{
+      background:
+        radial-gradient(1200px 500px at 80% -20%, rgba(255,255,255,.15), 
+        transparent 60%),
+        linear-gradient(90deg, var(--brand) 0%, var(--brand-2) 100%);
+      color:#fff;
+    }
+    .hero-inner{
+      max-width:1200px;
+      margin:auto;
+      padding:4.5rem 1rem;
+      display:grid;
+      grid-template-columns:1.2fr 1fr;
+      gap:2rem;
+      align-items:center}
+    .hero h1{
+      font-family:Montserrat,Inter,sans-serif;
+      font-size:clamp(1.8rem,3.2vw,3rem);
+      line-height:1.1;margin:0 0 1rem}
+    .lead{
+      color:#eaf2ff;
+      max-width:60ch;
+      margin-bottom:1.25rem}
+    .cta{
+      display:flex;
+      gap:.75rem;
+      flex-wrap:wrap}
+
+    .card{
+      background:var(--card);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:1.25rem;
+    }
+
+    /* Secciones */
+    .section{
+      max-width:1200px;
+      margin:auto;
+      padding:3rem 1rem}
+    .section h2{
+      font-family:Montserrat,Inter,sans-serif;
+      font-size:clamp(1.4rem,2.2vw,2rem);
+      margin:0 0 1rem;
+      color:var(--brand)}
+    .muted{
+      color:var(--muted)}
+
+    /* Grid de programas */
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(12,1fr);
+      gap:1rem}
+    .col-4{
+      grid-column:span 4}
+    .col-6{
+      grid-column:span 6}
+    .col-12{
+      grid-column:span 12}
+    .program{
+      display:
+      flex;gap:.9rem;
+      align-items:flex-start}
+    .program .icon{inline-size:42px;
+      block-size:42px;
+      border-radius:12px;
+      background:rgba(11,89,166,.1);
+      display:grid;place-items:center;
+      font-weight:800;
+      color:var(--brand-2)}
+
+    /* Blog preview */
+    .post{
+      display:flex;
+      gap:1rem}
+    .post img{
+      inline-size:140px;
+      block-size:96px;
+      border-radius:12px;
+      object-fit:cover}
+
+    /* Galería simple */
+    .gallery{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:.75rem}
+    .gallery img{
+      aspect-ratio:4/3;
+      object-fit:cover;
+      border-radius:12px}
+
+    /* Formularios */
+    form{
+      display:grid;
+      gap:.8rem}
+    .fld{
+      display:grid;
+      gap:.35rem}
+    label{
+      font-weight:600;
+      font-size:.95rem}
+    input,textarea,select{
+      padding:.8rem .9rem;
+      border-radius:12px;
+      border:1px solid #e5e7eb;
+      background:#fff;
+      transition:border-color .2s ease, box-shadow .2s ease;
+      font:inherit;
+      color:inherit
+    }
+    input:focus,textarea:focus,select:focus{
+      border-color:var(--brand-2);
+      box-shadow:var(--focus)}
+    .hint{
+      font-size:.85rem;
+      color:var(--muted)}
+    .inline{
+      display:flex;
+      gap:.6rem;
+      flex-wrap:wrap;
+      align-items:center}
+
+    /* Footer */
+    footer{
+      background:var(--brand);
+      color:#cfe4ff;
+      margin-top:3rem}
+    .foot{
+      max-width:1200px;
+      margin:auto;
+      padding:2rem 1rem;
+      display:grid;gap:1rem;
+      grid-template-columns:2fr 1fr 1fr}
+    .foot a{
+      color:#fff;
+      opacity:.9}
+    .foot small{
+      display:block;
+      margin-top:.25rem;
+      opacity:.8}
+    .foot .logo img{
+      height:64px}
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .hero-inner{grid-template-columns:1fr}
+      .gallery{grid-template-columns:repeat(3,1fr)}
+      .post{flex-direction:column}
+    }
+    @media (max-width: 800px){
+      .menu{display:none;
+        position:absolute;
+        inset:70px 1rem auto 1rem;
+        background:#0a3a6d;
+        border:1px solid rgba(255,255,255,.15);
+        border-radius:14px;
+        padding:.5rem}
+      .menu.open{
+        display:grid;
+        gap:.25rem}
+      .menu a{
+        padding:1rem;
+        border-radius:10px}
+      .hamb{
+        display:inline-grid;
+        place-items:center}
+      .brand img{
+        height:58px}   /* logo en móvil */
+      .foot{
+        grid-template-columns:1fr}
+      .gallery{
+        grid-template-columns:repeat(2,1fr)}
+      .col-4{
+        grid-column:span 12}
+      .col-6{
+        grid-column:span 12}
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#contenido">Saltar al contenido</a>
+
+  <!-- Header -->
+  <header role="banner">
+    <div class="nav-wrap" aria-label="Barra superior">
+      <a class="brand" href="#" aria-label="Inicio">
+        <!-- Reemplaza el src por tu logo -->
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMX6Oyeu9yC3p2Bx2DXcKd8Uk35yIc4NmyyA&s" alt="Logo CETPRO San Martín de Porres" />
+        <span class="brand-name">CETPRO San Martín de Porres<small>Formación técnica con valores</small></span>
+      </a>
+
+<nav aria-label="Navegación principal">
+  <button class="hamb" aria-expanded="false" aria-controls="menu" aria-label="Abrir menú">
+    ☰
+  </button>
+  <ul id="menu" class="menu" role="menubar">
+    <li role="none" class="menu-item">
+      <a role="menuitem" href="#programas">Programas</a>
+      <!-- Submenú desplegable -->
+      <ul class="submenu" aria-label="Submenú de Programas">
+        <li><a href="#programas-textil">Confección Textil</a></li>
+        <li><a href="#programas-industrial">Confección Industrial</a></li>
+        <li><a href="#programas-peluqueria">Peluquería</a></li>
+        <li><a href="#programas-cosmetologia">Cosmetología</a></li>
+        <li><a href="#programas-panaderia">Panadería y Pastelería</a></li>
+        <li><a href="#programas-computadoras">Operación de Computadoras</a></li>
+      </ul>
+    </li>
+    <li role="none"><a role="menuitem" href="#beneficios">Beneficios</a></li>
+    <li role="none"><a role="menuitem" href="#blog">Blog</a></li>
+    <li role="none"><a role="menuitem" href="#galeria">Galería</a></li>
+    <li role="none"><a role="menuitem" href="#contacto">Contacto</a></li>
+  </ul>
+</nav>
+
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" role="region" aria-label="Presentación">
+    <div class="hero-inner">
+      <div>
+        <h1>Formación técnica que impulsa tu proyecto de vida</h1>
+        <p class="lead">Carreras de un año (Auxiliar) y dos años (Técnico) con certificación a nombre del Ministerio de Educación. Aprende haciendo y emprende con confianza.</p>
+        <div class="cta">
+          <a href="#admision" class="btn primary">Postula ahora</a>
+          <a href="#programas" class="btn" style="background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.25)">Ver programas</a>
+        </div>
+      </div>
+
+      <div class="card" aria-hidden="true">
+        <strong>Próximo inicio:</strong>
+        <p class="muted" style="margin:.4rem 0 1rem">Marzo 2025 · Vacantes limitadas</p>
+        <ul style="display:grid;gap:.5rem">
+          <li class="inline"> Prácticas en talleres equipados</li>
+          <li class="inline"> Bolsa de empleo y asesoría</li>
+          <li class="inline"> Horarios flexibles</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <main id="contenido">
+    <!-- Programas -->
+    <section id="programas" class="section" aria-labelledby="tit-prog">
+      <h2 id="tit-prog">Carreras y ciclos</h2>
+      <p class="muted">Desarrolla competencias reales en nuestros talleres especializados.</p>
+
+      <div class="grid" style="margin-top:1rem">
+        <article class="card col-4 program">
+          <div class="icon">CT</div>
+          <div>
+            <h3>Confección Textil <small class="muted">Ciclo básico</small></h3>
+            <p class="muted">Patronaje y costura desde cero. Proyectos de prendas completas.</p>
+          </div>
+        </article>
+
+        <article class="card col-4 program">
+          <div class="icon">PI</div>
+          <div>
+            <h3>Confección Industrial <small class="muted">Ciclo medio</small></h3>
+            <p class="muted">Flujo de producción, control de calidad y maquinaria.</p>
+          </div>
+        </article>
+
+        <article class="card col-4 program">
+          <div class="icon">PE</div>
+          <div>
+            <h3>Peluquería <small class="muted">Ciclo básico</small></h3>
+            <p class="muted">Cortes, colorimetría y atención al cliente.</p>
+          </div>
+        </article>
+
+        <article class="card col-4 program">
+          <div class="icon">CO</div>
+          <div>
+            <h3>Cosmetología <small class="muted">Ciclo medio</small></h3>
+            <p class="muted">Tratamientos faciales/corporales y bioseguridad.</p>
+          </div>
+        </article>
+
+        <article class="card col-4 program">
+          <div class="icon">PP</div>
+          <div>
+            <h3>Panadería y Pastelería <small class="muted">Ciclo medio</small></h3>
+            <p class="muted">Producción, costos y presentación profesional.</p>
+          </div>
+        </article>
+
+        <article class="card col-4 program">
+          <div class="icon">OC</div>
+          <div>
+            <h3>Operación de Computadoras <small class="muted">Ciclo medio</small></h3>
+            <p class="muted">Ofimática, internet, diseño básico y soporte.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Beneficios -->
+    <section id="beneficios" class="section" aria-labelledby="tit-benef">
+      <h2 id="tit-benef">Beneficios que te acompañan</h2>
+      <div class="grid" style="margin-top:1rem">
+        <div class="card col-6">
+          <h3>Certificación oficial</h3>
+          <p class="muted">Títulos y certificados a nombre del Ministerio de Educación.</p>
+        </div>
+        <div class="card col-6">
+          <h3>Empleabilidad y emprendimiento</h3>
+          <p class="muted">Asesoría para tu negocio y convenios con empresas.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Blog -->
+    <section id="blog" class="section" aria-labelledby="tit-blog">
+      <h2 id="tit-blog">Del blog</h2>
+      <article class="card post" style="margin-top:1rem">
+        <img src="https://images.unsplash.com/photo-1520975682031-a30c3d59b3fb?q=80&w=900&auto=format&fit=crop" alt="Estudiantes trabajando en taller" />
+        <div>
+          <h3>Bienvenidos al CETPRO San Martín de Porres</h3>
+          <p class="muted">Conoce nuestra misión y cómo formamos con el carisma dominicano de Verdad y Caridad.</p>
+          <a class="btn" href="#" aria-label="Leer artículo Bienvenidos al CETPRO">Leer artículo</a>
+        </div>
+      </article>
+    </section>
+
+    <!-- Galería -->
+    <section id="galeria" class="section" aria-labelledby="tit-gal">
+      <h2 id="tit-gal">Vida en el CETPRO</h2>
+      <div class="gallery" style="margin-top:1rem">
+        <img src="https://images.unsplash.com/photo-1529078155058-5d716f45d604?q=80&w=900&auto=format&fit=crop" alt="Taller de confección textil">
+        <img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?q=80&w=900&auto=format&fit=crop" alt="Panadería y pastelería">
+        <img src="https://images.unsplash.com/photo-1502791451862-165e52a90ab3?q=80&w=900&auto=format&fit=crop" alt="Laboratorio de computación">
+        <img src="https://images.unsplash.com/photo-1504711331083-9c895941bf81?q=80&w=900&auto=format&fit=crop" alt="Cosmetología en práctica">
+      </div>
+    </section>
+
+    <!-- Admisión + Newsletter -->
+    <section id="admision" class="section" aria-labelledby="tit-adm">
+      <h2 id="tit-adm">Solicita información</h2>
+      <div class="grid" style="margin-top:1rem">
+        <form class="card col-6" aria-describedby="info-adm">
+          <p id="info-adm" class="muted">Completa tus datos y nos comunicaremos contigo.</p>
+          <div class="fld">
+            <label for="nombres">Nombres y apellidos</label>
+            <input id="nombres" name="nombres" autocomplete="name" required />
+          </div>
+          <div class="fld">
+            <label for="email">Correo</label>
+            <input id="email" type="email" name="email" autocomplete="email" required />
+          </div>
+          <div class="fld">
+            <label for="programa">Programa de interés</label>
+            <select id="programa" name="programa" required>
+              <option value="" selected disabled>Selecciona una opción</option>
+              <option>Confección Textil</option>
+              <option>Confección Industrial</option>
+              <option>Peluquería</option>
+              <option>Cosmetología</option>
+              <option>Panadería y Pastelería</option>
+              <option>Operación de Computadoras</option>
+            </select>
+          </div>
+          <div class="fld">
+            <label for="mensaje">Mensaje</label>
+            <textarea id="mensaje" name="mensaje" rows="4" placeholder="Cuéntanos tus dudas"></textarea>
+          </div>
+          <div class="inline">
+            <input id="legal" type="checkbox" required />
+            <label for="legal" class="muted">Acepto la <a href="#">política de privacidad</a>.</label>
+          </div>
+          <button class="btn primary" type="submit">Enviar solicitud</button>
+          <p class="hint" role="status" aria-live="polite" id="form-msg"></p>
+        </form>
+
+        <form class="card col-6" aria-label="Suscripción al boletín">
+          <h3>Recibe nuestro boletín</h3>
+          <p class="muted">Novedades, fechas y tips para tu empleabilidad.</p>
+          <div class="fld">
+            <label for="boletin-email">Correo</label>
+            <input id="boletin-email" type="email" placeholder="tu@correo.com" required>
+          </div>
+          <button class="btn" type="submit" style="background:var(--brand-2);color:#fff">Suscribirme</button>
+          <p class="hint" id="news-msg" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer role="contentinfo">
+    <div class="foot">
+      <div>
+        <div class="logo inline">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMX6Oyeu9yC3p2Bx2DXcKd8Uk35yIc4NmyyA&s" alt="Logo CETPRO" />
+          <div>
+            <strong>CETPRO San Martín de Porres</strong>
+            <small>Verdad y Caridad</small>
+          </div>
+        </div>
+        <small>© 2025 Todos los derechos reservados.</small>
+      </div>
+
+      <div>
+        <strong>Enlaces</strong>
+        <ul style="margin-top:.6rem">
+          <li><a href="#programas">Programas</a></li>
+          <li><a href="#admision">Admisión</a></li>
+          <li><a href="#blog">Blog</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <strong>Contacto</strong>
+        <ul style="margin-top:.6rem">
+          <li><a href="tel:+51000000000" aria-label="Teléfono"> 000 000 000</a></li>
+          <li><a href="mailto:info@cetpro.edu.pe">info@cetpro.a</a></li>
+          <li><a href="#" target="_blank" rel="noopener">Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Menú responsive accesible
+    const hamb = document.querySelector('.hamb');
+    const menu = document.getElementById('menu');
+    hamb?.addEventListener('click', () => {
+      const open = menu.classList.toggle('open');
+      hamb.setAttribute('aria-expanded', String(open));
+      hamb.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+    });
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 800 && menu.classList.contains('open')) {
+        menu.classList.remove('open');
+        hamb.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // Validación ligera y mensajes accesibles
+    const formAdm = document.querySelector('#admision form');
+    const msgAdm  = document.getElementById('form-msg');
+    formAdm?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!formAdm.checkValidity()){
+        msgAdm.textContent = 'Revisa los campos requeridos.';
+        return;
+      }
+      msgAdm.textContent = '¡Gracias! Hemos recibido tu solicitud.';
+      formAdm.reset();
+    });
+
+    const news = document.querySelector('#admision form:nth-of-type(2)');
+    const msgNews = document.getElementById('news-msg');
+    news?.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const email = document.getElementById('boletin-email');
+      if (!email.checkValidity()){
+        msgNews.textContent = 'Ingresa un correo válido.';
+        return;
+      }
+      msgNews.textContent = '¡Suscripción realizada! Revisa tu bandeja.';
+      news.reset();
+    });
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>
